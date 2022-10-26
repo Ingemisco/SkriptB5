@@ -1,0 +1,327 @@
+\documentclass[
+twoside=semi,
+fontsize=12,
+DIV=12, 
+cleardoublepage=current,
+leqno,
+headings=optiontoheadandtoc, 
+toc=idx
+]{scrbook}
+
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{datetime}
+\usepackage{cancel}
+\usepackage{tikz-cd}
+\usepackage{tcolorbox}
+
+\usepackage[headsepline]{scrlayer-scrpage}
+\setkomafont{pageheadfoot}{\normalfont}
+\setkomafont{pagefoot}{\slshape}
+
+\defpagestyle{main}
+{
+	{\thesection\ \leftmark \hfill}{\hfill \thesection\ \leftmark}{}
+}
+{
+	{\pagemark\hfill}{\hfill \pagemark}{}
+}
+
+\defpagestyle{sectionstart}
+{
+	{}{}{}(0pt,0pt)
+}
+{
+	{\pagemark\hfill}{\hfill \pagemark}{}
+}
+
+\usepackage{chngcntr}\counterwithout{equation}{section}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage[pass]{geometry}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\usepackage{nicematrix}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\MakeOuterQuote{"}
+\usepackage{romanbar}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\nsquare}{\cancel{\square}}
+
+
+\newcommand{\brac}[1]{\left( #1 \right)}
+\newcommand{\bracB}[1]{\left[ #1 \right]}
+\newcommand{\bracC}[1]{\left< #1 \right>}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\legendre}[2]{\brac{\frac{#1}{#2}}}
+
+\newcommand{\emphasize}[1]{\underline{#1}}
+
+
+\newcommand{\textcase}[2]{$\begin{Bmatrix} \textrm{#1} \\ \textrm{#2}\end{Bmatrix}$}
+\newcommand{\case}[2]{\begin{Bmatrix} #1 \\ #2\end{Bmatrix}}
+\newcommand{\schemaSmith}[3]{\begin{NiceTabular}[corners={NE,SE}, hvlines]{cc} #1 & #2 \\ #3 \end{NiceTabular}}
+\newcommand{\schemaSmithH}[2]{\begin{NiceTabular}[corners={NE,SE}, hvlines]{cc} #1 & #2 \end{NiceTabular}}
+\newcommand{\schemaSmithV}[2]{\begin{NiceTabular}[corners={NE,SE}, hvlines]{c} #1 \\ #2 \end{NiceTabular}}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\newcommand*{\ORIGchapterheadstartvskip}{}
+\let\ORIGchapterheadstartvskip=\chapterheadstartvskip
+\renewcommand*{\chapterheadstartvskip}{
+	\ORIGchapterheadstartvskip
+	\noindent\rule[\baselineskip]{\linewidth}{4pt}\par
+}
+\newcommand*{\ORIGchapterheadendvskip}{}
+\let\ORIGchapterheadendvskip=\chapterheadendvskip
+\renewcommand*{\chapterheadendvskip}{
+	\ORIGchapterheadendvskip
+	\noindent\rule[\baselineskip]{\linewidth}{4pt}\par
+}
+
+
+
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ann}{ann}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\com}{com}
+\DeclareMathOperator{\qf}{qf}
+\DeclareMathOperator{\irr}{irr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Spec}{Spec}
+
+\swapnumbers
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{bemerkung}[definition]{Bemerkung}
+\newtheorem{beispiel}[definition]{Beispiel}
+\newtheorem{warnung}[definition]{Warnung}
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{notation}[definition]{Notation}
+\newtheorem{korollar}[definition]{Korollar}
+\newtheorem{erinnerung}[definition]{Erinnerung}
+\newtheorem{erinnerung-und-sprechweise}[definition]{Erinnerung und Sprechweise}
+\newtheorem{prop-def}[definition]{Proposition und Definition}
+\newtheorem{def-prop}[definition]{Definition und Proposition}
+\newtheorem{def-satz}[definition]{Definition und Satz}
+\newtheorem{def-ueb}[definition]{Definition und \"Ubung}
+\newtheorem{satz-not}[definition]{Satz und Notation}
+\newtheorem{satz-def}[definition]{Satz und Definition}
+\newtheorem{uebung}[definition]{\"Ubung}
+\newtheorem{motivation}[definition]{Motivation}
+\newtheorem{bem-not}[definition]{Bemerkung und Notation}
+\newtheorem{sprechweise}[definition]{Sprechweise}
+\newtheorem{defueb}[definition]{Definition und \"Ubung}
+\newtheorem{theorem}[definition]{Theorem}
+\begin{document}
+	\tableofcontents\thispagestyle{empty}
+	\newpage\thispagestyle{empty}
+	\mainmatter
+	\chapter{Affine Algebraische Variet\"aten}
+	\pagestyle{main}
+	
+	\section{Algebraische Erg\"anzungen}
+	Ringe sind kommutativ (mit $1$), Ringhomomorphismen $\varphi: A\to B$ erf\"ullen $\varphi(1) = 1$. Erzeugte Ideale 
+		\[\bracC{a_1, \dots, a_n} = \sum_{i=1}^{n} Aa_i = \set{\sum_{i=1}^{n} a_ib_i \mid b_1, \dots, b_n \in A}\]
+	
+	\begin{definition}\label{1.1.1}\hfill\newline
+		Sei $A$ ein Ring, sei $I \subseteq A$ ein Ideal
+		\begin{enumerate}[(a)]
+			\item $\sqrt{I} := \set{a\in A \mid \exists n \geq 1 \textrm{ mit } a^n \in I}$ ist ein Ideal in $A$, genannt das \emphasize{Radikal} von $I$.
+			
+			\medskip\noindent
+			Ist $I = \sqrt{I}$, so hei\ss t $I$ ein \emphasize{Radikalideal}.
+			
+			\item $\Nil(A) := \sqrt{\set{0}}$ hei\ss t das \emphasize{Nilradikal} von $A$. Die Elemente von $\Nil(A)$ hei\ss en die \emphasize{nilpotenten} Elemente von $A$.
+			
+			\item Der Ring $A$ hei\ss t \emphasize{reduziert}, wenn $\Nil(A) = \set{0}$ ist
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{proof}
+		\begin{enumerate}[(a)]
+			\item Seien $a, b \in \sqrt{I}$, etwa $a^m \in I, b^n \in I$. Dann
+				\[(a+b)^{m+n} = \sum_{i+j=m+n} \binom{m+n}{i} \underbrace{a^ib^j}_{\in I} \in I  \implies a+b \in \sqrt{I}\]
+			Und $(ac)^m = a^mc^m \in I$ f\"ur $c \in A \implies ac \in \sqrt{I}$
+ 		\end{enumerate}
+	\end{proof}
+
+	\begin{bemerkung}\label{1.1.2}\hfill
+		\begin{itemize}
+			\item $I \subseteq \sqrt{I}$
+			\item Jedes Primideal ist ein Radikalideal.
+			\item $A= \Z, n = p_1^{e_1} \cdots p_r^{e_r}$ mit $p_i$ prim, $e_i \geq 1$, dann ist 
+			$\sqrt{\bracC{n}} = \bracC{p_1 \cdots p_r}$
+		\end{itemize}
+	\end{bemerkung}
+
+	\begin{lemma}\label{1.1.3}\hfill\newline
+		Seien $I, I_1, I_2 \subseteq A$ Ideale.
+		\begin{enumerate}[(a)]
+			\item $\sqrt{I_1 \cap I_2} = \sqrt{I_1} \cap \sqrt{I_2}$
+			
+			\item $\sqrt{I} = \bracC{1} \iff I = \bracC{1}$
+			
+			\item Ist $J \supseteq I$ ein weiteres Ideal, dann ist $\sqrt{J/I} = \sqrt{J}/I$ (in $A/I$).
+			
+			\medskip\noindent
+			Insbesondere: Der Ring $A/I$ ist reduziert genau dann, wenn $I = \sqrt{I}$
+		\end{enumerate}
+	\end{lemma}
+	
+	\begin{proof}
+		Aufgabe 4.
+	\end{proof}
+
+	\begin{satz}\label{1.1.4}\hfill\newline
+		F\"ur jedes Ideal $I \subseteq A$ ist 
+			\[\sqrt{I} = \bigcap_{\substack{\mathfrak{p} \in \Spec(A)\\\mathfrak{p} \supseteq I}} \mathfrak{p}\]
+		Die Radikalideale sind also die Durchschnitte von Primidealen.
+	\end{satz}
+	
+	\begin{proof}\hfil\newline
+		"$\subseteq$": Aus $I \subseteq \mathfrak{p}$ und $\mathfrak{p}$ prim folgt $\sqrt{I} \subseteq \sqrt{\mathfrak{p}} = \mathfrak{p}$
+		
+		\medskip\noindent
+		"$\supseteq$": Sei $t \in A, t \notin \sqrt{I}$, sei $A_t := A_S$ mit $S:= \set{1,t,t^2, \dots}$.\newline
+		Sei $\varphi:A \to A_t, \varphi(a) = \frac{a}{1}$. Dann ist $IA_t := I_t := \set{\frac{a}{t^n} \mid a \in I, n \geq 0}$ ein Ideal in $A_t$ und $1 \notin IA_t$ [Angenommen, $1 = \frac{1}{1} = \frac{a}{t^n}$ mit $a \in I \implies \exists m: t^m(t^n-a) = 0$, d.h. $t^{m+n} = at^m \in I \lightning$].\newline
+		Also existiert ein maximales Ideal $\mathfrak{m}$ von $A_t$ mit $IA_t \subseteq \mathfrak{m} \implies \mathfrak{p} := \varphi^{-1}(\mathfrak{m}) \in \Spec(A)$ mit $I \subseteq \mathfrak{p}$ und $t \notin \mathfrak{p}$.
+	\end{proof}
+	
+	\begin{korollar}\label{1.1.5}\hfill\newline
+		$\Nil(A) = \displaystyle \bigcap_{\mathfrak{p}\in \Spec(A)} \mathfrak{p}$
+	\end{korollar}
+
+	\begin{definition}\label{1.1.6}\hfill\newline
+		Sei $R$ ein Ring
+		\begin{enumerate}[(a)]
+			\item Eine \emphasize{$R$-Algebra} ist ein Ringhomomorphismus $\varphi:R \to A$ (in einen Ring $A$). Sprechweise "$A$ ist eine $R$-Algebra".
+			
+			\item Seien $\alpha:R \to A, \beta:R\to B$ zwei $R$-Algebren. Ein \emphasize{Homomorphismus von $R$-Algebren} (oder $R$-Homomorphismus) von $A$ nach $B$ ist ein Ringhomomorphismus $\varphi:A \to B$ mit $\varphi \circ \alpha = \beta$.
+			
+ 			\item $R$-Algebren $A, B$ hei\ss en \emphasize{isomorph} (als \emphasize{$R$-Algebren}), wenn es einen bijektiven \newline $R$-Homomorphismus $\varphi:A \to B$ gibt.
+		\end{enumerate}
+	\end{definition}
+
+	\begin{beispiel}\label{1.1.7}\hfill
+		\begin{enumerate}[1.]
+			\item Sei $R \subseteq A$ Teilring, dann ist $A$ eine $R$-Algebra via Inklusion.
+			
+			\item \label{1.1.7.2} Sei $A$ eine $R$-Algebra, dann gibt es eine Bijektion
+			\begin{align*}
+				\Hom(R[x_1, \dots, x_n], A) &\to A\times \cdots \times A = A^n\\
+				\varphi &\mapsto (\varphi(x_1), \dots, \varphi(x_n))
+			\end{align*}
+		
+			\item Zwei $R$-Algebren k\"onnen als Ring isomorph sein, ohne es als $R$-Algebren zu sein (Aufgabe 2).
+		\end{enumerate}
+	\end{beispiel}
+
+	\begin{lemma}\label{1.1.8}\hfill\newline
+		F\"ur jede $R$-Algebra $\alpha:R \to A$ sind \"aquivalent:
+		\begin{enumerate}[(i)]
+			\item\label{1.1.8.1} $\exists n \in \N: \exists a_1, \dots, a_n \in A$, so dass $A$ als Ring von $\alpha(R)$ und $a_1, \dots, a_n$ erzeugt wird.
+			
+			\item\label{1.1.8.2} $\exists n \in \N: \exists$ surjektiver Homomorphismus $R[x_1, \dots, x_n] \to A$ von $R$-Algebren.
+		\end{enumerate}
+		Gelten (i) und (ii), so hei\ss t die $R$-Algebra $A$ \emphasize{endlich erzeugt}.
+	\end{lemma}
+
+	\begin{proof}
+		Einfach (verwende \hyperref[1.1.7.2]{1.7.2})
+	\end{proof}
+
+	\begin{bemerkung}\label{1.1.9}\hfill\newline
+		Ist die $R$-Algebra $A$ als $R$-Modul endlich erzeugt, so auch als $R$-Algebra. Die Umkehrung ist im Allgemeinen falsch (Beispiel $A~=~R[x]$).
+	\end{bemerkung}
+
+	\begin{definition}\label{1.1.10}\hfill\newline
+		Sei $\varphi: A \to B$ ein $A$-Algebra
+		\begin{enumerate}[(a)]
+			\item $b \in B$ hei\ss t \emphasize{ganz} \"uber $A$, falls es eine Identit\"at $b^n+\varphi(a_1)b^{n-1} + \cdots + \varphi(a_n) = 0$ gibt ($n \in \N, a_i \in A$).
+			
+			\item Die $A$-Algebra $B$ hei\ss t \emphasize{ganz}, wenn jedes $b \in B$ ganz \"uber $A$ ist.\newline
+			Leicht zu sehen: $b \in B$ ist ganz \"uber $A$ genau dann, wenn $A[b]$ ($:=$ der von $\varphi(A)$ und $b$ erzeugte Teilring von $B$) als $A$-Modul endlich erzeugt ist.
+		\end{enumerate}
+	\end{definition}
+
+	\begin{satz}\label{1.1.11}\hfill\newline
+		Sei $B$ eine $A$-Algebra. Dann ist $C:= \set{b \in B\mid b \textrm{ ganz \"uber } A }$ ein Teilring von $B$, genannt der \emphasize{ganze Abschluss} von $A$ in $B$.
+	\end{satz}
+
+	\begin{definition}\label{1.1.12}\hfill\newline
+		Ein Ring hei\ss t \emphasize{noethersch}, wenn jedes Ideal von $A$ endlich erzeugt ist. \newline
+		Beispiel: Hauptidealringe sind noethersch. Ist $A$ noethersch, so auch $A/I$ und $A_S$ ($I$ Ideal, $S \subseteq A$ multiplikative Menge).
+	\end{definition}
+
+	\begin{theorem}\label{1.1.13} Hilbertscher Basissatz\newline
+		Ist $A$ noethersch, so auch $A[x]$.
+	\end{theorem}
+
+	\begin{korollar}\label{1.1.14}\hfill\newline
+		Ist $A$ noethersch, so ist auch jede endlich erzeugte $A$-Algebra noethersch.
+	\end{korollar}
+	
+	\begin{proof}
+		\hyperref[1.1.13]{1.13} und \hyperref[1.1.8.2]{1.8(ii)}
+	\end{proof}
+
+	\newpage
+	\section{Affine Algebraische Mengen}\thispagestyle{sectionstart}
+	$k$: (fixierter) Grundk\"orper, $\overline{k}$: (ein) algebraischer Abschluss von $k$. Sei $k \subseteq K$ eine (beliebige) K\"orpererweiterung mit $K$ algebraisch abgeschlossen (z.B. $K=\overline{k}$). \newline
+	Sei $n \in \N, \underline{x} = (x_1, \dots, x_n), k[\underline{x}] = k[x_1, \dots, x_n]$.
+	
+	\begin{definition}\label{1.2.1}\hfill
+		\begin{enumerate}[(a)]
+			\item $\A^n := K^n$ der $n$-dimensionale affine Raum
+			
+			\item Sei $P \subseteq k[\underline{x}]$ eine Menge von Polynomen, dann schreibe 	
+				\[\V(P) := \V_{\A^n}(P) := \set{\xi \in K^n \mid \forall p \in P: p(\xi) = 0}\]
+			Variet\"at von $P$.
+			\item Eine Teilmenge $V \subseteq \A^n$ hei\ss t \emphasize{affine $k$-Variet\"at}, falls $\exists P \subseteq k[\underline{x}]$ mit $V = \V(P)$.
+			
+			\item Sind $W \subseteq V \subseteq \A^n$ affine $k$-Variet\"aten, so hei\ss t $W$ eine \emphasize{$k$-Untervariet\"at} von $V$. 
+		\end{enumerate}
+	\end{definition}
+
+	\begin{lemma}\label{1.2.2}\hfill\newline
+		Sei $P \subseteq k[\underline{x}]$ eine Menge, sei $I:= \bracC{P}$ (das von $P$ erzeugte Ideal in $k[\underline{x}]$). Dann ist 
+		$\V(P) = \V(\sqrt{I})$.
+	\end{lemma}
+
+	\begin{proof}\hfill\newline
+		"$\supseteq$": klar
+		
+		\medskip\noindent
+		"$\subseteq$": Sei $\xi \in \V(P)$, sei $f \in \sqrt{I}$, also $f^m = g_1p_1 + \cdots +g_rp_r$ mit $m \in \N, g_i \k[\underline{x}], p_i \in P$. Auswerten in $\xi$ liefert:
+			\[f(\xi)^m = \sum_{i=1}^r g_i(\xi)\underbrace{p_i(\xi)}_{=0} = 0\]
+		Also $f(\xi) = 0$.
+	\end{proof}
+\end{document}
