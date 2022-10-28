@@ -16,6 +16,7 @@ toc=idx
 \usepackage{cancel}
 \usepackage{tikz-cd}
 \usepackage{tcolorbox}
+\usepackage{tkz-euclide}
 
 \usepackage[headsepline]{scrlayer-scrpage}
 \setkomafont{pageheadfoot}{\normalfont}
@@ -63,7 +64,8 @@ toc=idx
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\V}{\mathcal{V}}
 \newcommand{\nsquare}{\cancel{\square}}
-
+\newcommand{\x}{\underline{x}}
+\newcommand{\I}{\mathfrak{I}}
 
 \newcommand{\brac}[1]{\left( #1 \right)}
 \newcommand{\bracB}[1]{\left[ #1 \right]}
@@ -140,6 +142,7 @@ toc=idx
 \newtheorem{sprechweise}[definition]{Sprechweise}
 \newtheorem{defueb}[definition]{Definition und \"Ubung}
 \newtheorem{theorem}[definition]{Theorem}
+
 \begin{document}
 	\tableofcontents\thispagestyle{empty}
 	\newpage\thispagestyle{empty}
@@ -296,23 +299,23 @@ toc=idx
 	\newpage
 	\section{Affine Algebraische Mengen}\thispagestyle{sectionstart}
 	$k$: (fixierter) Grundk\"orper, $\overline{k}$: (ein) algebraischer Abschluss von $k$. Sei $k \subseteq K$ eine (beliebige) K\"orpererweiterung mit $K$ algebraisch abgeschlossen (z.B. $K=\overline{k}$). \newline
-	Sei $n \in \N, \underline{x} = (x_1, \dots, x_n), k[\underline{x}] = k[x_1, \dots, x_n]$.
+	Sei $n \in \N, \x = (x_1, \dots, x_n), k[\x] = k[x_1, \dots, x_n]$.
 	
 	\begin{definition}\label{1.2.1}\hfill
 		\begin{enumerate}[(a)]
 			\item $\A^n := K^n$ der $n$-dimensionale affine Raum
 			
-			\item Sei $P \subseteq k[\underline{x}]$ eine Menge von Polynomen, dann schreibe 	
+			\item Sei $P \subseteq k[\x]$ eine Menge von Polynomen, dann schreibe 	
 				\[\V(P) := \V_{\A^n}(P) := \set{\xi \in K^n \mid \forall p \in P: p(\xi) = 0}\]
 			Variet\"at von $P$.
-			\item Eine Teilmenge $V \subseteq \A^n$ hei\ss t \emphasize{affine $k$-Variet\"at}, falls $\exists P \subseteq k[\underline{x}]$ mit $V = \V(P)$.
+			\item Eine Teilmenge $V \subseteq \A^n$ hei\ss t \emphasize{affine $k$-Variet\"at}, falls $\exists P \subseteq k[\x]$ mit $V = \V(P)$.
 			
 			\item Sind $W \subseteq V \subseteq \A^n$ affine $k$-Variet\"aten, so hei\ss t $W$ eine \emphasize{$k$-Untervariet\"at} von $V$. 
 		\end{enumerate}
 	\end{definition}
 
 	\begin{lemma}\label{1.2.2}\hfill\newline
-		Sei $P \subseteq k[\underline{x}]$ eine Menge, sei $I:= \bracC{P}$ (das von $P$ erzeugte Ideal in $k[\underline{x}]$). Dann ist 
+		Sei $P \subseteq k[\x]$ eine Menge, sei $I:= \bracC{P}$ (das von $P$ erzeugte Ideal in $k[\x]$). Dann ist 
 		$\V(P) = \V(\sqrt{I})$.
 	\end{lemma}
 
@@ -320,8 +323,191 @@ toc=idx
 		"$\supseteq$": klar
 		
 		\medskip\noindent
-		"$\subseteq$": Sei $\xi \in \V(P)$, sei $f \in \sqrt{I}$, also $f^m = g_1p_1 + \cdots +g_rp_r$ mit $m \in \N, g_i \k[\underline{x}], p_i \in P$. Auswerten in $\xi$ liefert:
+		"$\subseteq$": Sei $\xi \in \V(P)$, sei $f \in \sqrt{I}$, also $f^m = g_1p_1 + \cdots +g_rp_r$ mit $m \in \N, g_i \in k[\x], p_i \in P$. Auswerten in $\xi$ liefert:
 			\[f(\xi)^m = \sum_{i=1}^r g_i(\xi)\underbrace{p_i(\xi)}_{=0} = 0\]
 		Also $f(\xi) = 0$.
 	\end{proof}
+
+	\begin{korollar}\label{1.2.3}\hfill\newline
+		Jede affine $k$-Variet\"at hat die Form $V=\V(f_1, \dots, f_r)$ mit endlich 
+		vielen $f_1, \dots, f_r \in k[\x]$
+	\end{korollar}
+
+	\begin{proof}\hfill\newline
+		Sei $V = \V(P)$ mit einer Teilmenge $P \subseteq k[\x]$. Sei $\bracC{P} = \bracC{f_1, \dots, f_r}$ mit $f_i \in k[\x]$ (\hyperref[1.1.13]{Hilberscher Basissatz}). Dann ist $V = \V(f_1, \dots, f_r)$ mit \hyperref[1.2.2]{Lemma 2.2}
+	\end{proof}
+
+	\begin{lemma}\label{1.2.4}\hfill
+		\begin{enumerate}[(a)]
+			\item $\emptyset, \A^n$ sind affine $k$-Variet\"aten.
+			
+			\item Sind $V_1, V_2 \subseteq \A^n$ affine $k$-Variet\"aten, so auch $V_1 \cup V_2$.
+			
+			\item Sind $V_\lambda \subseteq \A^n$ affine $k$-Variet\"aten f\"ur $\lambda \in \Lambda$, so auch $\displaystyle \bigcap_{\lambda \in \Lambda} V_\lambda$.
+			
+			\item Sind $V \subseteq \A^m, W \subseteq \A^n$ affine $k$-Variet\"aten, so auch $V\times W \subseteq \A^m \times \A^n = \A^{m+n}$.
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{proof}\hfill
+		\begin{enumerate}[(a)]
+			\item $\emptyset = \V(1), \A = \V(0)$
+			
+			\item Seien $V_i = \V(I_i)$ mit $I_i \subseteq k[\x]$ Ideale ($i = 1, 2$).
+			\begin{tcolorbox}[colback=white,colframe=blue,arc=0cm]
+				\textbf{Behauptung}: $V_1 \cup V_2 = \V(I_1 \cap I_2)$.
+				
+				\tcblower
+				\textbf{Begr\"undung}: \newline
+				"$\subseteq$": klar
+				
+				\medskip\noindent
+				"$\supseteq$": Sei $\xi \in \V(I_1 \cap I_2)$. Ohne Einschr\"ankung $\xi \notin V_1$, also gibt es $f \in I_1$ mit $f(\xi) \neq 0$. F\"ur jedes $g \in I_2$ ist $fg \in I_1 \cap I_2$, also nach Voraussetzung ist $\underbrace{f(\xi)}_{\neq 0}g(\xi) = 0$. Also ist $g(\xi) = 0$, also $\xi \in \V(I_2) = V_2$.
+			\end{tcolorbox}
+			
+			\item \[\bigcap_{\lambda \in \Lambda} \V(I_\lambda) = \V\brac{\bigcup_{\lambda \in \Lambda} I_\lambda}\]
+			
+			\item Sei $V = \V_{\A^m}(I)$ mit $I \subseteq k[x_1, \dots, x_m]$. Sei $W = \V_{\A^n}(J)$ mit $J \subseteq k[y_1, \dots, y_n]$. Dann ist
+			$V\times W = \V_{\A^m\times \A^n}(I \cup J)$
+		\end{enumerate}
+	\end{proof}
+
+	\begin{korollar}\label{1.2.5}\hfill\newline
+		Sind $I_1, I_2, I_\lambda$ ($\lambda \in \Lambda$) Ideale in $k[\x]$, so ist
+		\begin{enumerate}[(a)]
+			\item $\V(I_1)\cup \V(I_2) = \V(I_1V_2) = \V(I_1 \cap I_2)$
+			
+			\item $\displaystyle \bigcap_{\lambda \in \Lambda} \V(I_\lambda) = \V\brac{\sum_{\lambda \in \Lambda} I_\lambda}$
+		\end{enumerate}
+	\end{korollar}
+
+	\begin{definition}\label{1.2.6}\hfill\newline
+		Ist $\V \subseteq \A^n$ eine Teilmenge, so hei\ss t $\I(V) = \I_k(V) := \set{f \in k[\x] \mid \forall \xi \in V: f(\xi) = 0}$ das \emphasize{(Verschwindungs-)Ideal} von $V$.
+	\end{definition}
+
+	\begin{lemma}\label{1.2.7}\hfill\newline
+		Seien $V, V_1, V_2 \subseteq \A^n$ Teilmengen
+		
+		\begin{enumerate}[(a)]
+			\item $\I_k(V)$ ist ein Radikalideal in $k[\x]$. Ist $V$ eine affine $k$-Variet\"at, so ist $\V(\I_k(V)) = V$.
+			
+			\item Aus $V_1 \subseteq V_2$ folgt $\I_k(V_2) \subseteq \I_k(V_1)$. Ist $V_2$ eine affine $k$-Variet\"at, so gilt auch $\I_k(V_2) \subseteq \I_k(V_1) \implies V_1 \subseteq V_2$.
+			
+			\item $\I_k(V_1 \cup V_2) = \I_k(V_1) \cap \I_k(V_2)$.
+			
+			\item Jede absteigende Folge $V_1 \supseteq V_2 \supseteq \cdots$ von affinen $k$-Variet\"aten in $\A^n$ wird station\"ar.
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{proof}\hfill
+		\begin{enumerate}[(a)]
+			\item $\I_k(V)$ ist ein Radikalideal: klar.
+			
+			\medskip\noindent
+			Sei $V = \V(I)$ eine affine $k$-Variet\"at mit $I$ Ideal. \newline Dann ist $I \subseteq \I_k(V)$, also $\V(\I_k(V)) \subseteq \V(I) = V$. Umgekehrt ist $V \subseteq \V(\I_k(V))$ trivial.
+			
+			\item "$\implies$" ist trivial.
+			
+			\medskip\noindent
+			"$\impliedby$" (falls $V$ eine affine $k$-Variet\"at ist) folgt aus
+				\[V_1 \subseteq \V(\I(V_1)) \subseteq \V(\I(V_2)) \overset{(a)}{=} V_2.\]
+			
+			\item offensichtlich.
+			
+			\item $\I(V_1) \subseteq \I(V_2) \subseteq \cdots$ wird station\"ar, weil $k[\x]$ noethersch ist. Ist $\I(V_i) = \I(V_{i+1})$, so auch $V_i = V_{i+1}$ nach (b).
+		\end{enumerate}
+	\end{proof}
+
+	\begin{beispiel}\label{1.2.8}\hfill
+		\begin{enumerate}[1.]
+			
+			\item $\I(\emptyset) = \bracC{1} = k[\x]$
+			
+			\smallskip\noindent
+			$\I(\A^n) = \set{0}$ (Ist $0 \neq f \in k[\x]$, so existiert $\xi \in K^n$ mit $f(\xi) \neq 0$, wegen $|K| = \infty$)
+			
+			\item Einige Beispiele:\newline
+			\begin{center}
+				\begin{tabular}{l|c} % TODO: Add images
+					$f$ & $\V(f)$\\\hline
+					$x_1^2+x_2^2-1$ & \\
+					$x_1x_2$ & \\
+					$x_2^2-x_1^2-x_1^3$ & \\
+					$x_2^2-x_1^3$ & \\
+					$x_1^2+x_2^2$ & 
+				\end{tabular}
+				
+				\medskip
+				In $\A^3$:\newline
+				\begin{tabular}{l|c} % TODO: Add images
+					$f$ & $\V(f)$\\\hline
+					$x_1^2+x_2^2-1$ & \\
+					$x_1^2+x_2^2-x_3^2 -1$ & \\
+					$x_1^2-x_2^2x_3$ & 
+				\end{tabular}
+			\end{center}
+			
+			
+			\item Ist $V = \V(f)$ mit $f \in k[\x] \setminus k$, so hei\ss t $V$ eine Hyperfl\"ache in $\A^n$.
+			
+			\item Ist $V = \V_{\A^n}(f_1, \dots, f_r)$ mit $\deg(f_i) = 1$, so hei\ss t (ist) $V$ ein affin-linearer Teilraum des $\A^n$.
+			
+			\item Endliche Teilmengen von $k^n$ sind affine $k$-Variet\"aten in $\A^n$: Ist $\xi = (\xi_1, \dots, \xi_n) \in k^n$, so ist
+			$\set{\xi} = \V(x_1-\xi_1, \dots, x_n-\xi_n)$.
+			
+			\item Rational parametrisierte Variet\"aten:
+			\begin{align*}
+				\V(x_1^2-x_2^3 &= \set{(t^2,t^3) \mid t \in \A^n})\\
+				\V(x_1^2-x_2^2-1) &= \set{\brac{\frac{t^2+1}{t^2-1}, \frac{2t}{t^2-1}} \mid t \in \A^n \setminus \set{\pm 1}} \cup \set{(1,0)}
+			\end{align*}
+		\end{enumerate}
+	\end{beispiel}
+
+	\begin{theorem}\label{1.2.9} (Hilbertscher Nullstellensatz, k\"orpertheoretische Form)\newline
+		Sei $k \subseteq F$ eine K\"orpererweiterung. Ist $F$ als $k$-Algebra endlich erzeugt, so ist $k \subseteq F$ endlich algebraisch.
+	\end{theorem}
+	
+	\begin{proof}\hfill\newline
+		Es gibt $0\neq \alpha_1, \dots, \alpha_n \in F$ mit $F = k[\alpha_1, \dots, \alpha_n]$. Durch Induktion nach $n$ zeigen wir $F/k$ ist algebraisch.
+		
+		\noindent $n = 1$: Es gibt $p \in k[\alpha_1]$ mit $\frac{1}{\alpha_1} = p(\alpha_1)$, also ist $\alpha_1$ algebraisch \"uber $k$.
+		
+		\medskip\noindent
+		$n-1 \to n$: Es ist auch $F = k(\alpha_1)[\alpha_2, \dots, \alpha_n]$. Durch Induktion sind $\alpha_2, \dots, \alpha_n$ algebraisch \"uber $k(\alpha_1)$. Es gen\"ugt daher zu zeigen,
+		dass $\alpha_1$ algebraisch \"uber $k$ ist. Es gibt Gleichungen
+			\[u_i\alpha_i^{d_i} + \sum_{j=1}^{d_i-1} v_{ij}\alpha_i^j = 0\]
+		in $F$ ($i = 1, \dots, n$) mit $u_i, v_{ij} \in k[\alpha_1], u_i \neq 0$.
+		Dividiere durch $u_i$, daraus folgt, dass $\alpha_i$ ganz \"uber $k[\alpha_1, \frac{1}{u_i}] \subseteq k(\alpha_1)$ ist ($i = 2, \dots, n$).
+		F\"ur $u:= u_2 \cdots u_n$ gilt also $0 \neq u \in k[\alpha_1]$ und $\alpha_2, \dots, \alpha_n$ sind ganz \"uber $k[\alpha_1, \frac{1}{u}]$. 
+		Also ist $k[\alpha_1, \frac{1}{u}] \subseteq F$ eine ganze Ringerweiterung.
+		Angenommen $\alpha_i$ ist transzendent \"uber $k$. W\"ahle $f \in k[\alpha_1]$ irreduzibel mit $f \nmid u$. Es gibt eine Ganzheitsgleichung f\"ur $\frac{1}{f}$: $\brac{\frac{1}{f}}^m + b_1\brac{\frac{1}{f}}^{m-1}+\cdots + b_m = 0$ in $F$ mit $b_1, \dots b_m \in k[\alpha_1, \frac{1}{u}]$. Multiplizieren mit $f^m$ und einer hohen Potenz von $u$ liefert eine Gleichung $u^N+c_1f+\cdots+c_mf^m = 0$ mit $N \geq 0, c_1,\dots, c_m \in k[\alpha_1]$. Widerspruch zu $f\nmid u$ und $f$ irreduzibel.
+	\end{proof}
+
+	\begin{korollar}\label{1.2.10}\hfill\newline
+		Ist $k$ ein K\"orper, $A$ eine endlich erzeugte $k$-Algebra. Dann ist f\"ur jedes maximale Ideal $\mathfrak{m}$ von $A$ $A/\mathfrak{m}$ eine \emphasize{endliche} K\"orpererweiterung von $k$.
+	\end{korollar}
+
+	\begin{proof}\hfill\newline
+		$A/\mathfrak{m}$ ist eine endlich erzeugte $k$-Algebra (und K\"orpererweiterung), also $[A/\mathfrak{m}:k] < \infty$ nach \hyperref[1.2.9]{2.9}.
+	\end{proof}
+
+	\begin{korollar}\label{1.2.11}(Hilbertscher Nullstellensatz, geometrische Form)\newline
+		F\"ur jedes Ideal $I \neq \bracC{1}$ in $k[\x]$ ist $\V(I) \neq \emptyset$.
+	\end{korollar}
+
+	\begin{proof}\hfill\newline
+		Es gibt ein maximales Ideal $\mathfrak{m} \subseteq k[\x]$ mit $I \subseteq \mathfrak{m}$, also $[\frac{k[\x]}{\mathfrak{m}}:k] < \infty$ nach Korollar \hyperref[1.2.10]{2.10}.
+		Es gibt eine $k$-Einbettung $\varphi: k[\x]/\mathfrak{m} \to K$. Setze $\xi_i := \varphi(x_i+\mathfrak{m}) \in K$ ($i=1,\dots, n$), $\xi:= (\xi_1, \dots, \xi_n)$.
+		\begin{tcolorbox}[colback=white,colframe=blue,arc=0cm]
+			\textbf{Behauptung}: $\xi \in \V(I)$.
+			
+			\tcblower
+			\textbf{Begr\"undung}: \newline
+			F\"ur $f \in k[\x]$ ist $\varphi(f + \mathfrak{m}) = f(\xi)$, denn $f \in I \implies f \in \mathfrak{m} \implies f(\xi) = 0$.
+		\end{tcolorbox}
+	\end{proof}
+
+	\begin{bemerkung}\label{1.2.12}\hfill\newline
+		Haben $f_1, \dots, f_r \in k[\x]$ \emphasize{keine} gemeinsame Nullstelle in $\A^n$, so existieren $g_1, \dots, g_r \in k[\x]$ mit $f_1g_1+\cdots f_rg_r = 1$.
+	\end{bemerkung}
 \end{document}
