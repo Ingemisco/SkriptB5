@@ -510,4 +510,183 @@ toc=idx
 	\begin{bemerkung}\label{1.2.12}\hfill\newline
 		Haben $f_1, \dots, f_r \in k[\x]$ \emphasize{keine} gemeinsame Nullstelle in $\A^n$, so existieren $g_1, \dots, g_r \in k[\x]$ mit $f_1g_1+\cdots f_rg_r = 1$.
 	\end{bemerkung}
+
+	\begin{theorem}\label{1.2.13} Hilbertscher Nullstellensatz, Idealtheoretische Version\newline
+		F\"ur jedes Ideal $I \subseteq k[\x]$ ist $\I(\V(I)) = \sqrt{I}$.
+	\end{theorem}
+	
+	\noindent
+	NB: Aus \hyperref[1.2.13]{2.13} folgt sofort wieder \hyperref[1.2.11]{2.11}
+	
+	\begin{proof}
+		$I \subseteq \I(\V(I))$ ist klar, also auch $\sqrt{I} \subseteq \I(\V(I))$. Umgekehrt sei $0 \neq f \in \I(\V(I))$. Sei $J:= $ das von $I$ und von $tf-1$ erzeugte Ideal in $k[\x, t] = k[x_1, \dots, x_n, t]$. Es ist $\V_{\A^{n+1}}(J) \neq \emptyset$, denn sei $(\xi, \tau) \in \A^n\times \A^1$ mit $(\xi, \tau) \in \V(J)$, dann $\xi \in \V(I)$ und $\tau \underbrace{f(\xi)}_{=0} = 1$, Widerspruch. Also $J =\bracC{1}$ in $k[\x, t]$. 
+		\newline 
+		Nach \hyperref[1.2.11]{2.11} haben wir eine Identit\"at $1 = p \cdot (tf-1) + \sum_{i=1}^{r}q_if_i$ mit $r\geq 0, p, q_1, \dots, q_r \in k[\x, t], f_1, \dots, f_r \in I$. Substituiere dann $t = \frac{1}{f}$, d.h. betrachte den $k[\x]$-Homomorphismus $\varphi: k[\x, t] \to k[\x, \frac{1}{f}] \subseteq k(\xi)$ mit $\varphi(t) = \frac{1}{f}$. Das gibt 
+		\begin{align}
+			1 &= \sum_{i=1}^r\varphi(q_i)f_i \tag{$*$}\label{1.2.13.1}
+		\end{align}
+		in $k[\x, \frac{1}{f}]$. Dabei ist $\varphi(q_i) = \frac{g_i}{f^{e_i}}$ mit $e_i \geq 0, f_i \in k[\x]$. Multipliziere (\ref{1.2.13.1}) mit einer hohen Potenz von $f$. Es folgt $f^e \in \bracC{f_1, \dots, f_r} \subseteq I$ (in $k[\x]$), also $f \in \sqrt{I}$.
+	\end{proof}
+
+	\begin{beispiel}\label{1.2.14}\hfill\newline
+		Sei $V = \V(f)$ eine Hyperfl\"ache, $f \in k[\x]\setminus k$. Dann ist $\I(V) = \bracC{g}$ mit $\bracC{g} = \sqrt{\bracC{f}}$, $g$ ist das Produkt der \emphasize{verschiedenen}
+		irreduziblen Faktoren von $f$.
+	\end{beispiel}
+
+	\begin{korollar}\label{1.2.15}\hfill\newline
+		F\"ur Ideale $I, J \subseteq k[\x]$ gilt $\V(I) \subseteq \V(J) \iff \sqrt{I} \supseteq \sqrt{J}$.
+	\end{korollar}
+
+	\begin{proof}
+		$\V(I) \subseteq \V(J) \iff \I(\V(I)) \supseteq \I(\V(J)) \overset{\hyperref[1.2.13]{2.13}}{\iff} \sqrt{I} \supseteq \sqrt{J}$
+	\end{proof}
+
+	\begin{korollar}\label{1.2.16}\hfill\newline
+		\begin{align*}
+			\begin{Bmatrix}
+				\textrm{affine } k\textrm{-Variet\"aten }\\V \textrm{in } \A^n
+			\end{Bmatrix}
+			&\to \begin{Bmatrix}
+				\textrm{Ideale } I \subseteq k[\x]\\
+				\textrm{mit } \sqrt{I} = I
+			\end{Bmatrix}\\
+			V &\mapsto \I(V)
+		\end{align*}
+	
+		ist eine ($\subseteq$-umkehrende) Bijektion mit Umkehrabbildung $\V(I) \mapsfrom I$
+	\end{korollar}
+
+	\begin{proof}
+		\hyperref[1.2.7]{2.7} und \hyperref[1.2.13]{2.13}.
+	\end{proof}
+
+	\begin{korollar}\label{1.2.17}\hfill
+		\begin{enumerate}[(a)]
+			\item Seien $V_\lambda \subseteq \A^n$ ($\lambda \in \Lambda$) affine $k$-Variet\"aten, dann ist 
+				\[\I\brac{\bigcap_{\lambda \in \Lambda} V_{\lambda}} = \sqrt{\sum_{\lambda \in \Lambda} \I(V_\lambda)}.\]
+			
+			\item Seien $V \subseteq \A^m, W \subseteq \A^n$ affine $k$-Variet\"aten, dann ist $\I(V \times W) = \sqrt{I}$ mit $I:= $ das von $\I(V) \subseteq k[\x]$ und $\I(W) \subseteq k[\underline{y}]$ erzeugte Ideal in $k[x_1, \dots, x_n, y_1, \dots, y_n]$.
+		\end{enumerate}
+	\end{korollar}
+
+	\newpage
+	\section{Die Zariskitopologie}\thispagestyle{sectionstart}
+	\begin{definition}\label{1.3.1}\hfill
+		\begin{enumerate}[(a)]
+			\item Die $k$-\emphasize{Zariskitopologie} auf $\A^n$ hat genau die affinen $k$-Variet\"aten in $\A^n$ als abgeschlossene Mengen. Diese Mengen nennen wir auch die $k$-abgeschlossenen Mengen.
+			
+			\item F\"ur eine Teilmenge $X \subseteq \A^n$ definieren wir die $k$-Zariskitopologie auf $X$ als die Relativtopologie .
+		\end{enumerate}
+	\end{definition}
+
+	\noindent Bemerkung: Vergleiche Lemma \hyperref[1.2.4]{2.4}(a)-(c). Die offenen $k$-Variet\"aten in $\A^n$ sind stabil unter endlicher Vereinigung und beliebigem Schnitt (und enth\"alt $\emptyset$).
+	
+	\begin{bemerkung}\label{1.3.2}
+		\begin{enumerate}[1.]
+			\item 
+			F\"ur $X \subseteq \A^n$ sei $\overline{X}:=$ der Abschluss von $X$ in der $k$-Zariskitopologie. Es ist $\overline{X} = \V(\I(X))$, denn "$\subseteq$" ist klar und
+			$\V(\I(X)) \subseteq \V(\I(\overline{X})) \overset{\hyperref[1.2.7]{2.7(a)}}{=} \overline{X}$
+			
+			\item
+			F\"ur $f \in k[\x]$ ist $D(f) = D_{\A^n}(f) = \set{\xi \in \A^n\mid f(\xi) \neq 0} = \A^n \setminus \V(f)$ eine $k$-offene Menge. Jede $k$-offene Menge hat die Form $D(f_1) \cup \cdots \cup D(f_r)$ mit $f_i \in k[\x]$   
+			
+			\item Die Zariskitopologie ist " sehr nicht-Hausdorff", z.B. $k = \C = K$. Die abgeschlossenen Mengen in $\A^1$ sind nur $\A^1$ sowie alle endlichen Mengen.
+			
+			\item Die Zariskitopologie auf $\A^n\times \A^n$ ist \emphasize{nicht} die Produkttopologie! (Aufgabe 7)
+			
+			\item Ist $k \subseteq E \subseteq K$ ein Zwischenk\"orper, so ist die $E$-Zariskitopologie im allgemeinen strikt feiner als die $k$-Zariskitopologie.
+		\end{enumerate}
+	\end{bemerkung}
+
+	\begin{definition}\label{1.3.3}\hfill\newline
+		Sei $X$ ein topologischer Raum.
+		\begin{enumerate}[(a)]
+			\item $X$ hei\ss t \emphasize{irreduzibel}, falls $X \neq \emptyset$ und gilt: Sind $X_1, X_2 \subseteq X$ abgeschlossen und $X = X_1 \cup X_2$, so ist $X_1 = X$ oder $X_2 = X$. Andernfalls hei\ss t $X$ \emphasize{reduzibel}.
+			
+			\item $Y \subseteq X$ hei\ss t eine irreduzible Komponente von $X$, falls $Y$ irreduzibel, aber jede echte Obermenge von $Y$ in $X$ reduzibel ist. 
+		\end{enumerate}
+	\end{definition}
+
+	\begin{lemma}\label{1.3.4}\hfill\newline
+		Sei $X \neq \emptyset$ ein topologischer Raum.
+		\begin{enumerate}[(a)]
+			\item Es sind \"aquivalent
+			\begin{enumerate}[(i)]
+				\item $X$ ist irreduzibel
+				\item jede offene Menge $\neq \emptyset$ in $X$ ist dicht in $X$.
+ 				\item Je zwei nichtleere offenen Mengen in $X$ haben nichtleeren Schnitt.
+			\end{enumerate}
+			
+			\item F\"ur $Y \subseteq X$ gilt $Y$ ist irreduzibel genau dann, wenn $\overline{Y}$ irreduzibel ist.
+			
+			\item Die irreduziblen Komponenten von $X$ sind abgeschlossen
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{bemerkung}\label{1.3.5}\hfill
+		\begin{enumerate}[1.]
+			\item $\A^n$ ist irreduzibel: F\"ur $f, g\in k[\x] \setminus k$ ist $D(f) \cap D(g) = D(fg) \neq \emptyset$.
+			\item Ein Hausdorffraum $X$ ist irreduzibel genau dann, wenn $|X| = 1$.
+		\end{enumerate}
+	\end{bemerkung}
+
+	\begin{lemma}\label{1.3.6}\hfill\newline
+		Sei $X$ ein topologischer Raum. Jede irreduzible Teilmenge von $X$ ist in einer irreduziblen Komponente von $X$ enthalten. Insbesondere ist $X$ Vereinigung seiner irreduziblen Komponenten.
+	\end{lemma}
+
+	\begin{proof}
+		Sei $Y \subseteq X$ irreduzibel. Betrachte $\mathcal{M} := \set{Z \subseteq X \mid Z \textrm{ irreduzibel, } Z \supseteq Y}$. Ist $(Z_i)_{i \in I}$ eine bez\"uglich Inklusion total geordnete Familie in $\mathcal{M}$, so ist $Z:= \bigcup_{i \in I}Z_i$ irreduzibel, also $Z \in \mathcal{M}$: Benutze \hyperref[1.3.4]{3.4(a)(iii)}. Seien $U_1, U_2 \subseteq X$ offen mit $U_j \cap Z \neq \emptyset$ ($j = 1, 2$). Dann gibt es $i_1, i_2 \in I$ mit $U_1 \cap Z_{i_1} \neq \emptyset$ und $U_2 \cap Z_{i_2} \neq \emptyset$. Wir k\"onnen erreichen, dass $i_1 = i_2 =:i$. Wegen $Z_i$ irreduzibel ist $U_1 \cap U_2 \cap Z_i \neq \emptyset$.
+	\end{proof}
+
+	\begin{definition}\label{1.3.7}\hfill\newline
+		Ein topologischer Raum $X$ hei\ss t \emphasize{noethersch}, wenn jede absteigende Folge $Z_1 \supseteq Z_2 \supseteq \cdots $ von abgeschlossenen Teilmengen von $X$ station\"ar wird.
+	\end{definition}
+
+	\begin{lemma}\label{1.3.8}\hfill\newline
+		Es sind \"aquivalent:
+		\begin{enumerate}[(i)]
+			\item $X$ ist noethersch.
+			
+			\item Jedes System $\neq \emptyset$ aus abgeschlossenen Teilmengen hat ein minimales Element.
+			
+			\item Jede offene Menge in $X$ ist quasikompakt
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{proof}
+		(i)$\iff$(ii) ist klar, (i) $\iff$ jede aufsteigende Folge offener Mengen wird station\"ar - Das ist (iii).
+	\end{proof}
+
+	\begin{bemerkung}\label{1.3.9}\hfill
+		\begin{enumerate}[1.]
+			\item Jede affine $k$-Variet\"at ist ein noetherscher topologischer Raum.
+			
+			\item Jeder Teilraum eines noetherschen Raumes ist noethersch.
+		\end{enumerate}
+	\end{bemerkung}
+
+	\begin{satz}\label{1.3.10}\hfill\newline
+		Ein noetherscher topologischer Raum hat nur endlich viele irreduzible Komponenten.
+	\end{satz}
+
+	\begin{proof}
+		Sei $\mathcal{M}$ die Menge aller abgeschlossenen Mengen $\emptyset \neq Y \subseteq X$, die \emphasize{nicht} Vereinigung von endlich vielen irreduziblen sind. Zu zeigen ist $\mathcal M = \emptyset$.
+		Angenommen, $\mathcal{M} \neq \emptyset$. Nach \hyperref[1.3.8]{3.8(ii)} existiert ein minimales $Y \in \mathcal{M}$. $Y$ ist reduzibel, etwa $Y = Y_1 \cup Y_2$ mit abgeschlossenen $Y_i \subsetneq Y$ ($i = 1, 2$). Also $Y_1, Y_2 \notin \mathcal{M}$, also $Y \notin \mathcal{M} \lightning$. Also $\mathcal{M} = \emptyset$, das hei\ss t, es gibt irreduzible abgeschlossene $X_1, \dots, X_r \subseteq X$ mit $X = X_1 \cup \cdots \cup X_r$. Ohne Einschr\"ankung $X_i \nsubseteq X_j$ f\"ur $i \neq j$. Dann sind $X_1, \dots, X_r$ die irreduziblen Komponenten von $X$. Denn sei $Y \subseteq X$ eine irreduzible Teilmenge von $X$. $Y = (Y\cap X_1) \cup \cdots\cup (Y \cap X_r)$, also $Y \cap X_i = Y$ f\"ur ein $i$, also $Y = X_i$.
+	\end{proof}
+
+	\begin{bemerkung}
+		-
+	\end{bemerkung}
+
+	\begin{korollar}\label{1.3.12}\hfill\newline
+		Sei $V \subseteq \A^n$ eine affine $k$-Variet\"at. Dann gibt es endlich viele irreduzible $k$-Variet\"aten $V_1, \dots, V_r \subseteq \A^n$ mit $V = V_1 \cup \dots \cup V_r$ und $V_i \nsubseteq V_j$ f\"ur $i\neq j$. Dadurch sind $V_1, \dots, V_r$ eindeutig bestimmt (bis auf Reihenfolge) und sind die $k$-irreduziblen Komponenten von $V$.
+	\end{korollar}
+
+	\begin{satz}\label{1.3.13}\hfill\newline
+		Sei $V$ eine affine $k$-Variet\"at. Dann ist $V$ genau dann $k$-irreduzibel, wenn $\I_k(V) $ ein Primideal in $k[\x]$ ist. 
+	\end{satz}
+
+	\begin{proof}
+		Inhalt...
+	\end{proof}
 \end{document}
